@@ -1,0 +1,11 @@
+{
+  "riverkeys.controls.title": "Server Controls",
+  "riverkeys.thebutton": "Server Keys",
+
+  "riverkeys.modifier.left_shift": "LShift",
+  "riverkeys.modifier.right_shift": "RShift",
+  "riverkeys.modifier.left_alt": "LAlt",
+  "riverkeys.modifier.right_alt": "RAlt",
+  "riverkeys.modifier.left_ctrl": "LCtrl",
+  "riverkeys.modifier.right_ctrl": "RCtrl"
+}

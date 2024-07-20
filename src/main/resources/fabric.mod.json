@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "riverkeys",
+	"version": "${version}",
+	"name": "riverkeys",
+	"description": "yep yep yep!",
+	"authors": [
+		"ASangarin",
+		"riverbytheocean"
+	],
+	"contact": {
+		"homepage": "https://github.com/riverbytheocean",
+		"sources": "https://github.com/riverbytheocean/riverkeys-fabric"
+	},
+	"license": "MIT",
+	"icon": "assets/riverkeys/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.riverbytheocean.mods.riverkeys.Riverkeys"
+		],
+		"client": [
+			"io.github.riverbytheocean.mods.riverkeys.RiverKeysClient"
+		]
+	},
+	"mixins": [
+		"riverkeys.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

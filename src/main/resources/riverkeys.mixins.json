@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"package": "io.github.riverbytheocean.mods.riverkeys.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"client": [
+		"client.KeyMappingAccessor",
+		"client.KeyMappingInjects",
+		"client.OptionsScreenMixin"
+	],
+	"mixins": [
+		"client.PacketDecoderMixin"
+	]
+}
