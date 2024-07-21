@@ -9,8 +9,5 @@
 		"client.KeyMappingAccessor",
 		"client.KeyMappingInjects",
 		"client.OptionsScreenMixin"
-	],
-	"mixins": [
-		"client.PacketDecoderMixin"
 	]
 }

@@ -28,8 +28,6 @@ public class RiverKeysClient implements ClientModInitializer {
 
         ClientPlayNetworking.registerGlobalReceiver(AddKeyPayload.TYPE, ((payload, context) -> {
 
-            Riverkeys.LOGGER.info("AddKeyRecieved");
-
             KeyAddData data = new KeyAddData(
                     ResourceLocation.fromNamespaceAndPath(payload.namespace(), payload.key()),
                     payload.name(),

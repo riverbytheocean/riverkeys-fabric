@@ -1,8 +1,7 @@
 package io.github.riverbytheocean.mods.riverkeys.mixin.client;
 
+import io.github.riverbytheocean.mods.riverkeys.screen.ServerKeybindOptions;
 import io.github.riverbytheocean.mods.riverkeys.screen.ServerKeysButton;
-import io.github.riverbytheocean.mods.riverkeys.screen.ServerKeysOptions;
-import io.github.riverbytheocean.mods.riverkeys.keymappings.ServerKeys;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.options.OptionsScreen;
@@ -24,9 +23,9 @@ public class OptionsScreenMixin extends Screen {
     @Inject(method = "init", at = @At("TAIL"))
     protected void initMainButton(CallbackInfo ci) {
 
-        if (minecraft == null || minecraft.isSingleplayer() || ServerKeys.getKeybinds().isEmpty()) return;
+//        if (minecraft == null || minecraft.isSingleplayer() || ServerKeys.getKeybinds().isEmpty()) return;
         this.addRenderableWidget(new ServerKeysButton(this.width / 2 + 158, this.height / 6 + 72 - 6,
-                (button) -> this.minecraft.setScreen(new ServerKeysOptions(this, this.options))));
+                (button) -> this.minecraft.setScreen(new ServerKeybindOptions(this, this.options))));
 
     }
 }
