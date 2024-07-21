@@ -24,4 +24,5 @@ public record AddKeyPayload(String namespace, String key, int defKey, String nam
     public Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
+
 }

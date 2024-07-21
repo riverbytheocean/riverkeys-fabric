@@ -13,7 +13,6 @@ public class KeyPacketSending {
 
     public static void sendHandshake() {
         ClientPlayNetworking.send(new HandshakePayload());
-        Riverkeys.LOGGER.info("handshake sent!");
     }
 
     public static KeyMapping getKeyBinding(InputConstants.Key code) {
