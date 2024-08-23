@@ -4,27 +4,28 @@ import com.google.common.base.Charsets;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Splitter;
 import com.google.common.io.Files;
+import com.moandjiezana.toml.Toml;
+import com.moandjiezana.toml.TomlWriter;
 import com.mojang.blaze3d.platform.InputConstants;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ModifierKey;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ServerKey;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ServerKeys;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 public class KeyMappingSaving {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Splitter COLON_SPLITTER = Splitter.on(':').limit(2);
-    private static final File KEYBIND_FILE = new File(Minecraft.getInstance().gameDirectory, "riverkeys.txt");
+    public static final File KEYBIND_FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "riverkeys.toml");
 
     public static void load() {
         try {
@@ -55,7 +56,7 @@ public class KeyMappingSaving {
             bufferedReader.close();
 
             for (ServerKey serverKey : ServerKeys.getKeybinds()) {
-                String key = "serverkey_" + serverKey.getId().toString().replace(":", "+");
+                String key = serverKey.getId().toString().replace(":", "+");
 
                 String defKey = serverKey.getBoundKeyCode().getName();
                 String keybind = MoreObjects.firstNonNull(nbtCompound.contains(key) ? nbtCompound.getString(key) : null, defKey);
@@ -80,35 +81,33 @@ public class KeyMappingSaving {
     }
 
     public static void save() {
-        try {
-            final PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(KEYBIND_FILE), StandardCharsets.UTF_8));
 
+        if (!KEYBIND_FILE.exists()) {
             try {
-                for (ServerKey serverKey : ServerKeys.getKeybinds()) {
-                    printWriter.print("serverkey_" + serverKey.getId().toString().replace(":", "+"));
-                    printWriter.print(':');
-                    printWriter.println(serverKey.getBoundKeyCode().getName());
-
-                    for (ModifierKey modifier : serverKey.getBoundModifiers()) {
-                        printWriter.print("serverkey_" + serverKey.getId().toString().replace(":", "+") + "_" + modifier.getId());
-                        printWriter.print(':');
-                        printWriter.println("true");
-                    }
-                }
-            } catch (Throwable throwable) {
-                try {
-                    printWriter.close();
-                } catch (Throwable throwable2) {
-                    throwable.addSuppressed(throwable2);
-                }
-
-                throw throwable;
+                KEYBIND_FILE.createNewFile();
+            } catch (IOException exception) {
+                LOGGER.error("Failed to save server's keybinds!", exception);
             }
+        }
 
-            printWriter.close();
-        } catch (Exception exception) {
+        Toml toml = new Toml().read(KEYBIND_FILE);
+        Map<String, Object> keyMappings = toml.toMap();
+        Map<String, Object> finalKeyMappings = new HashMap<>();
+
+        keyMappings.forEach((key, value) -> {
+            finalKeyMappings.put(key.replaceAll("^\"|\"$", ""), value);
+        });
+
+        ServerKeys.getKeybinds().forEach(serverKey -> {
+            finalKeyMappings.put(serverKey.getId().toString(), serverKey.getBoundKeyCode().getName());
+        });
+
+        try {
+            new TomlWriter().write(finalKeyMappings, KEYBIND_FILE);
+        } catch (IOException exception) {
             LOGGER.error("Failed to save server's keybinds!", exception);
         }
+
     }
 
 }

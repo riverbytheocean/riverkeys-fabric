@@ -1,7 +1,6 @@
 package io.github.riverbytheocean.mods.riverkeys.keymappings;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import io.github.riverbytheocean.mods.riverkeys.Riverkeys;
 import io.github.riverbytheocean.mods.riverkeys.mixin.client.KeyMappingAccessor;
 import io.github.riverbytheocean.mods.riverkeys.payloads.HandshakePayload;
 import io.github.riverbytheocean.mods.riverkeys.payloads.KeyPressPayload;

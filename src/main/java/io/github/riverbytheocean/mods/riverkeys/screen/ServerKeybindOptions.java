@@ -5,7 +5,6 @@ import io.github.riverbytheocean.mods.riverkeys.keymappings.ModifierKey;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ServerKey;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ServerKeys;
 import io.github.riverbytheocean.mods.riverkeys.util.KeyMappingSaving;
-import net.minecraft.Util;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.GuiGraphics;

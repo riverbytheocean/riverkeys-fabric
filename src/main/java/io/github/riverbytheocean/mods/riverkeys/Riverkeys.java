@@ -1,12 +1,6 @@
 package io.github.riverbytheocean.mods.riverkeys;
 
-import io.github.riverbytheocean.mods.riverkeys.payloads.AddKeyPayload;
-import io.github.riverbytheocean.mods.riverkeys.payloads.HandshakePayload;
-import io.github.riverbytheocean.mods.riverkeys.payloads.KeyPressPayload;
-import io.github.riverbytheocean.mods.riverkeys.payloads.LoadKeysPayload;
 import net.fabricmc.api.ModInitializer;
-
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
