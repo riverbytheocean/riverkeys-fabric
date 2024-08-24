@@ -1,16 +1,15 @@
 package io.github.riverbytheocean.mods.riverkeys.keymappings;
 
 import io.github.riverbytheocean.mods.riverkeys.util.KeyCategoryComparator;
-import io.github.riverbytheocean.mods.riverkeys.util.KeyMappingSaving;
 import io.github.riverbytheocean.mods.riverkeys.util.KeyModifierComparator;
 import io.github.riverbytheocean.mods.riverkeys.util.network.KeyAddData;
+import io.github.riverbytheocean.mods.riverkeys.util.saving.KeyMappingSaving;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.*;
 
 public final class ServerKeys {
 
-    public static final String MOD_ID = "riverkeys";
     private static final Map<ResourceLocation, ServerKey> CUSTOM_KEYS = new HashMap<>();
     private static final Set<ResourceLocation> VANILLA_KEYS = new HashSet<>();
 

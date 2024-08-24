@@ -4,7 +4,6 @@ import net.minecraft.resources.ResourceLocation;
 
 public class KeyPacketChannels {
 
-    // backwards compatibility with AriKeys
     public static final ResourceLocation HANDSHAKE_CHANNEL = ResourceLocation.fromNamespaceAndPath("riverkeys", "greeting");
     public static final ResourceLocation ADD_KEY_CHANNEL = ResourceLocation.fromNamespaceAndPath("riverkeys", "addkey");
     public static final ResourceLocation LOAD_CHANNEL = ResourceLocation.fromNamespaceAndPath("riverkeys", "load");

@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ModifierKey;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ServerKey;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ServerKeys;
-import io.github.riverbytheocean.mods.riverkeys.util.KeyMappingSaving;
+import io.github.riverbytheocean.mods.riverkeys.util.saving.KeyMappingSaving;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.GuiGraphics;
@@ -24,7 +24,6 @@ public class ServerKeybindOptions extends OptionsSubScreen {
     private static final Component TITLE = Component.translatable("riverkeys.controls.title");
     @Nullable
     public ServerKey selectedKey;
-    public long lastKeySelection;
     private ServerKeyList serverKeyList;
     private Button resetButton;
 

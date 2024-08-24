@@ -9,46 +9,6 @@ import java.nio.charset.StandardCharsets;
 
 public class OldPacketFormats {
 
-    public static final short DEFAULT_MAX_STRING_LENGTH = Short.MAX_VALUE;
-
-    public static StreamCodec<ByteBuf, String> oldString() {
-        return new StreamCodec<ByteBuf, String>() {
-            public String decode(ByteBuf buf) {
-                int i = DEFAULT_MAX_STRING_LENGTH * 3;
-                int j = readVarInt(buf);
-                if (j > i) {
-                    throw new DecoderException("The received encoded string buffer length is longer than maximum allowed (" + j + " > " + i + ")");
-                }
-                if (j < 0) {
-                    throw new DecoderException("The received encoded string buffer length is less than zero! Weird string!");
-                }
-                String s = buf.toString(buf.readerIndex(), j, StandardCharsets.UTF_8);
-                buf.readerIndex(buf.readerIndex() + j);
-                if (s.length() > DEFAULT_MAX_STRING_LENGTH) {
-                    throw new DecoderException(
-                            "The received string length is longer than maximum allowed (" + s.length() + " > " + DEFAULT_MAX_STRING_LENGTH + ")");
-                }
-                return s;
-            }
-
-            public void encode(ByteBuf buf, String string) {
-                if (string.length() > DEFAULT_MAX_STRING_LENGTH) {
-                    int var10002 = string.length();
-                    throw new EncoderException("String too big (was " + var10002 + " characters, max " + DEFAULT_MAX_STRING_LENGTH + ")");
-                } else {
-                    byte[] bs = string.getBytes(StandardCharsets.UTF_8);
-                    int i = DEFAULT_MAX_STRING_LENGTH * 3;
-                    if (bs.length > i) {
-                        throw new EncoderException("String too big (was " + bs.length + " bytes encoded, max " + i + ")");
-                    } else {
-                        writeVarInt(buf, bs.length);
-                        buf.writeBytes(bs);
-                    }
-                }
-            }
-        };
-    }
-
     public static StreamCodec<ByteBuf, int[]> oldIntArray() {
         return new StreamCodec<>() {
             public int[] decode(ByteBuf buf) {

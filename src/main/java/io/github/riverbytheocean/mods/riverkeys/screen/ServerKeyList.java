@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ModifierKey;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ServerKey;
 import io.github.riverbytheocean.mods.riverkeys.keymappings.ServerKeys;
-import io.github.riverbytheocean.mods.riverkeys.util.KeyMappingSaving;
+import io.github.riverbytheocean.mods.riverkeys.util.saving.KeyMappingSaving;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
@@ -33,7 +33,6 @@ public class ServerKeyList extends ContainerObjectSelectionList<ServerKeyList.En
 
     final ServerKeybindOptions parent;
 
-    private static final int ITEM_HEIGHT = 20;
     final ServerKeybindOptions serverKeybindOptions;
     private int maxNameWidth;
 
@@ -122,7 +121,6 @@ public class ServerKeyList extends ContainerObjectSelectionList<ServerKeyList.En
     @Environment(EnvType.CLIENT)
     public class KeyEntry extends ServerKeyList.Entry {
         private static final Component RESET_BUTTON_TITLE = Component.translatable("controls.reset");
-        private static final int PADDING = 10;
         private final ServerKey serverKey;
         private final Component component;
         private final Button changeButton;

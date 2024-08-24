@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -33,6 +34,20 @@ public enum ModifierKey {
     }
 
     public static Set<ModifierKey> getFromArray(int[] modifiers) {
+        Set<ModifierKey> keys = new HashSet<>();
+        for (int i : modifiers) {
+            ModifierKey key = fromCode(i);
+            if (key == ModifierKey.NONE) continue;
+            keys.add(key);
+        }
+        return keys;
+    }
+
+    public static Set<ModifierKey> getFromList(List<Integer> modifiers) {
+        if (modifiers == null) {
+            return new HashSet<>();
+        }
+
         Set<ModifierKey> keys = new HashSet<>();
         for (int i : modifiers) {
             ModifierKey key = fromCode(i);
