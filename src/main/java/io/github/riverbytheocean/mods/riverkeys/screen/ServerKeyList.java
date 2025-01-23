@@ -134,9 +134,7 @@ public class ServerKeyList extends ContainerObjectSelectionList<ServerKeyList.En
             this.changeButton = Button.builder(component, (button) -> {
                 ServerKeyList.this.serverKeybindOptions.selectedKey = serverKey;
                 ServerKeyList.this.resetMappingAndUpdateButtons();
-            }).bounds(0, 0, 75, 20).createNarration((supplier) -> {
-                return serverKey.isUnbound() ? Component.translatable("narrator.controls.unbound", new Object[]{component}) : Component.translatable("narrator.controls.bound", new Object[]{component, supplier.get()});
-            }).build();
+            }).bounds(0, 0, 75, 20).createNarration((supplier) -> serverKey.isUnbound() ? Component.translatable("narrator.controls.unbound", component) : Component.translatable("narrator.controls.bound", new Object[]{component, supplier.get()})).build();
 
             this.resetButton = Button.builder(RESET_BUTTON_TITLE, (button) -> {
                 serverKey.setBoundKey(serverKey.getKeyCode(), false);
@@ -149,7 +147,7 @@ public class ServerKeyList extends ContainerObjectSelectionList<ServerKeyList.En
         }
 
         public void render(GuiGraphics guiGraphics, int i, int j, int k, int l, int m, int n, int o, boolean bl, float f) {
-            int p = ServerKeyList.this.getScrollbarPosition() - this.resetButton.getWidth() - 10;
+            int p = ServerKeyList.this.scrollBarX() - this.resetButton.getWidth() - 10;
             int q = j - 2;
             this.resetButton.setPosition(p, q);
             this.resetButton.render(guiGraphics, n, o, f);

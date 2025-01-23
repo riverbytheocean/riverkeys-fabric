@@ -11,7 +11,7 @@ import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.network.chat.Component;
@@ -59,13 +59,12 @@ public class ServerKeysButton implements Renderable, GuiEventListener, Narratabl
     }
 
     public void renderButton(GuiGraphics context) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, WIDGETS_TEXTURE);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.enableDepthTest();
-        context.blit(WIDGETS_TEXTURE, this.x, this.y, 0, this.isHovered() ? 20 : 0, 20, 20);
+        context.blit(wow -> RenderType.guiTexturedOverlay(WIDGETS_TEXTURE), WIDGETS_TEXTURE, x, y, 0, this.isHovered() ? 20: 0, 20, 20, 256, 256);
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button) {

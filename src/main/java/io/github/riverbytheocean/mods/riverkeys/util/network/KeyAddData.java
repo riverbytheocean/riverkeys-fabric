@@ -3,7 +3,6 @@ package io.github.riverbytheocean.mods.riverkeys.util.network;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 
 @Getter

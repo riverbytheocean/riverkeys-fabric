@@ -2,10 +2,7 @@ package io.github.riverbytheocean.mods.riverkeys.util;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.handler.codec.DecoderException;
-import io.netty.handler.codec.EncoderException;
 import net.minecraft.network.codec.StreamCodec;
-
-import java.nio.charset.StandardCharsets;
 
 public class OldPacketFormats {
 
