@@ -43,4 +43,8 @@ public class RiverKeysClient implements ClientModInitializer {
 
     }
 
+    public static ResourceLocation from(String value) {
+        return ResourceLocation.fromNamespaceAndPath("riverkeys", value);
+    }
+
 }
