@@ -17,15 +17,16 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"io.github.riverbytheocean.mods.riverkeys.Riverkeys"
+          "io.github.riverbytheocean.mods.riverkeys.ServerKeys"
 		],
 		"client": [
-			"io.github.riverbytheocean.mods.riverkeys.RiverKeysClient"
+          "io.github.riverbytheocean.mods.riverkeys.ServerKeysClient"
 		]
 	},
 	"mixins": [
 		"riverkeys.mixins.json"
 	],
+    "accessWidener": "serverkeys.classtweaker",
 	"depends": {
 		"fabricloader": ">=0.15.11",
 		"minecraft": ">=1.21",

@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.11-SNAPSHOT'
+	id 'fabric-loom' version '1.14-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -39,6 +39,10 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
 	include(implementation 'com.moandjiezana.toml:toml4j:0.7.2')
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/serverkeys.classtweaker")
 }
 
 processResources {

@@ -1,6 +1,6 @@
 package io.github.riverbytheocean.mods.riverkeys.screen;
 
-import io.github.riverbytheocean.mods.riverkeys.RiverKeysClient;
+import io.github.riverbytheocean.mods.riverkeys.ServerKeysClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -28,7 +28,7 @@ public class ServerKeyButtonWidget extends Button {
 
         guiGraphics.blit(
                 RenderPipelines.GUI_TEXTURED,
-                this.isHoveredOrFocused() ? RiverKeysClient.from("selected_button.png") : RiverKeysClient.from("unselected_button.png"),
+                this.isHoveredOrFocused() ? ServerKeysClient.from("selected_button.png") : ServerKeysClient.from("unselected_button.png"),
                 this.getX(), this.getY(),
                 20, 20, 20, 20, 20, 20
         );

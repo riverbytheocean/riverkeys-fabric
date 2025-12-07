@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import io.github.riverbytheocean.mods.riverkeys.util.network.KeyAddData;
 import lombok.Getter;
 import lombok.Setter;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 
@@ -39,7 +40,7 @@ public class ServerKey {
         if (handleModifiers) {
             Set<ModifierKey> mods = new HashSet<>();
             for (ModifierKey modifier : ModifierKey.ALL)
-                if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), modifier.getCode())) mods.add(modifier);
+                if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow(), modifier.getCode())) mods.add(modifier);
             setBoundModifiers(mods);
         }
         this.boundKeyCode = key;
@@ -59,12 +60,20 @@ public class ServerKey {
 
     public boolean testModifiers() {
         for (ModifierKey key : boundModifiers)
-            if (!InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), key.getCode())) return false;
+            if (!InputConstants.isKeyDown(Minecraft.getInstance().getWindow(), key.getCode())) return false;
         return true;
     }
 
     public boolean testModifiers(Set<ModifierKey> otherKeys) {
         return boundModifiers.containsAll(otherKeys) && otherKeys.containsAll(boundModifiers);
+    }
+
+    public boolean isDefault() {
+        return this.keyCode.equals(this.boundKeyCode);
+    }
+
+    public boolean same(KeyMapping binding) {
+        return this.boundKeyCode.equals(binding.key);
     }
 
 }
