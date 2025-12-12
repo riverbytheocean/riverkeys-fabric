@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "riverkeys",
+	"id": "serverkeys",
 	"version": "${version}",
-	"name": "riverkeys",
+	"name": "serverkeys",
 	"description": "yep yep yep!",
 	"authors": [
 		"ASangarin",
@@ -13,18 +13,18 @@
 		"sources": "https://github.com/riverbytheocean/riverkeys-fabric"
 	},
 	"license": "MIT",
-	"icon": "assets/riverkeys/icon.png",
+	"icon": "assets/serverkeys/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "io.github.riverbytheocean.mods.riverkeys.ServerKeys"
+          "io.github.riverbytheocean.mods.serverkeys.ServerKeys"
 		],
 		"client": [
-          "io.github.riverbytheocean.mods.riverkeys.ServerKeysClient"
+          "io.github.riverbytheocean.mods.serverkeys.ServerKeysClient"
 		]
 	},
 	"mixins": [
-		"riverkeys.mixins.json"
+		"serverkeys.mixins.json"
 	],
     "accessWidener": "serverkeys.classtweaker",
 	"depends": {
